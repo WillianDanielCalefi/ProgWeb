@@ -109,3 +109,14 @@ body {margin:0;font-family:Arial}
   border-image-slice: 1;
   
 }
+
+.carousel-caption{
+  -webkit-text-stroke-width: 10px;
+  -webkit-text-stroke-color: #000;
+  font-size: 3em; color: #fffdd9;
+}
+
+.borda {
+  color:#FFCCAC; 
+  text-shadow:#000 1px -1px, #000 -1px 1px, #000 1px 1px, #000 -1px -1px
+}
