@@ -2,7 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 04</title>
+    <title>Cosmético Pika</title>
+    <link rel="icon" type="image/jpg" href="assets/img/icone.png"/>
     <!-- configurações padrão do navegaor -->
     <meta name="viewport" content="whidth=device-width,initial-scale=1, shink-to-fit=no">
     <!--Faz a chamada do bootstrap -->
@@ -14,16 +15,11 @@
         border-image-source: linear-gradient(45deg, rgb(67, 117, 230), rgb(194, 48, 230));
         border-image-slice: 1;
       }
-
-        a:hover {
-            background-color: rgb(117, 117, 117);
-            height: 100%;
-        }
     </style>
 
     <nav class="navbar navbar-expand-lg navbar-light gradiente" style="background-color: #212020; position: fixed; z-index: 3; width: 100%;">
         <div class="container">
-            <a class="col-md-1" href="home.html"><img style="width: 80%; margin-left: 7px;" src="assets/img/icone.png" alt=""></a>
+            <a class="" href="home.html"><img style="width: 13%; margin-left: 7px;" src="assets/img/icone.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -58,34 +54,36 @@
 
 </head>
 <body>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="padding-top: 70px;">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="assets/img/banner1.jpg" alt="" style="max-height: 400px;">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="assets/img/perfume.jpg" alt="" style="max-height: 400px;">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="assets/img/maquiagens.jpg" alt="" style="max-height: 400px;">
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Anterior</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Próximo</span>
-        </a>
-      </div>
-  
     <section id="home">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="padding-top: 70px;">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="assets/img/banner1.jpg" alt="" style="max-height: 400px;">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="assets/img/perfume.jpg" alt="" style="max-height: 400px;">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="assets/img/maquiagens.jpg" alt="" style="max-height: 400px;">
+            </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+            </a>
+        </div>
+    </section>
+  
+    <section>
   
         <div class="container-fluid" style="margin-bottom: 30px; background-image: linear-gradient(to right, rgb(67, 117, 230), rgb(194, 48, 230));">
           <div class="container">
@@ -151,15 +149,22 @@
             x.className = "topnav";
           } 
         }
+
+        // $(document).ready(function() {
+        //     $('.nav-link').click(function() {
+        //         $('html, body').animate({
+        //             scrollTop: $('#home').offset().top
+        //         }, 500);
+        //         return false;
+        //     });
+        // });
+
       </script>
-    
- 
-    
 
     <!-- Faz a chamada do jquery -->
     <script type="text/javascript" src="assets/js/jquery-3.4.1.min.js"></script>
     <!-- Faz a chamada do bundle -->
-    <script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>     
+    <script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
