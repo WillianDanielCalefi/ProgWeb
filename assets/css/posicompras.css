@@ -1,0 +1,82 @@
+.margem_tudo{
+    max-width: 1366px;
+    padding: 0 35px;
+        padding-top: 0px;
+        padding-right: 35px;
+        padding-bottom: 0px;
+        padding-left: 35px;
+}
+.tamanho_nome_produto{
+    font-size: 30px;
+    margin: 0 0 12px 0;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 12px;
+        margin-left: 0px;
+}
+.caixa_preco{
+    background-color: mistyrose;
+    padding: 20px 15px;
+        padding-top: 20px;
+        padding-right: 15px;
+        padding-bottom: 20px;
+        padding-left: 15px;
+    position: relative;
+    width: 375px;
+}
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+.preco_detalhes{
+    font-family: sans-serif;
+    font-size: 48px;
+    padding-left: 22px;
+    position: relative;
+}
+.parcela_detalhes{
+    padding-left: 25px;
+    align-items: center;
+}
+.margem_info{
+    margin-bottom: 60px;
+    padding: 0 35px;
+        padding-top: 0px;
+        padding-right: 35px;
+        padding-bottom: 0px;
+        padding-left: 35px;
+}
+.linha_info{
+    border-bottom:1px solid purple;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: purple;
+}
+.titulo_info{
+    position: relative;
+    text-align: left;
+    padding: 15px 0;
+        padding-top: 15px;
+        padding-right: 0px;
+        padding-bottom: 15px;
+        padding-left: 0px
+}
+.titulo_detalhes{
+    font-size: 16px;
+    color: black;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    cursor: help;
+}
+.plus_info{
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    cursor: pointer;
+}
