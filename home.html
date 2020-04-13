@@ -16,11 +16,23 @@
         border-image-source: linear-gradient(45deg, rgb(67, 117, 230), rgb(194, 48, 230));
         border-image-slice: 1;
       }
+
+      .transition-border{
+        width: 100px;
+        border-bottom: 3px solid;
+        border-image-source: linear-gradient(45deg, rgb(67, 117, 230), rgb(194, 48, 230));
+        border-image-slice: 1;
+        transition: width 1s;
+      }
+      div.transition:hover .transition-border{
+        transition: width 1s;
+        width: 100%;
+      }
     </style>
 
     <nav class="navbar navbar-expand-lg navbar-light gradiente" style="background-color: #212020; position: fixed; z-index: 16; width: 100%;">
         <div class="container">
-            <a class="" href="home.html"><img style="width: 13%; margin-left: 7px;" src="assets/img/icone.png" alt=""></a>
+            <a href="home.html"><img style="width: 13%; margin-left: 7px;" src="assets/img/icone.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -104,29 +116,44 @@
           <p style="font-family: Lato,sans-serif; font-size: 13px; margin-bottom: 10px;">Vamos cuidar e apoiar uns aos outros e o primeiro passo para enfrentarmos o momento atual é cuidar da higiene. São muitas opções de aromas e texturas para você escolher o seu sabonete favorito, higienizar as mãos e cuidar da sua saúde.</p>
           <div class="row">
             <div class="col-md-4" style="width: 18rem;">
-              <img class="card-img-top" src="assets/img/sabonete.jpg" alt="" style="max-height: 260px;">
-              <div class="card-body">
-                <h5 class="card-title">Sabonete de Limpeza Extraforte com Ácido Salicílico</h5>
-                <p class="card-text" style="font-size: 20px;"><b>$ 12,08</b></p>
-                <a href="compras.html" class="btn btn-primary">Ver Produto</a>
-              </div>
+              <div class="transition">
+                <img class="card-img-top" src="assets/img/sabonete.jpg" alt="" style="max-height: 260px;">
+                <div class="card-body">
+                  <h5 class="card-title">Sabonete de Limpeza Extraforte com Ácido Salicílico</h5>
+                  <p class="card-text" style="font-size: 20px;"><b>$ 12,08</b></p>
+                  <a href="compras.html" class="btn btn-primary">Ver Produto</a>
+                </div>
+                <div style="text-align: -webkit-center;">
+                  <div class="transition-border"></div>
+                </div>
+              </div>              
             </div>
   
             <div class="col-md-4" style="width: 18rem;">
-              <img class="card-img-top" src="assets/img/sabonete2.jpg" alt="" style="max-height: 260px;">
-              <div class="card-body">
-                <h5 class="card-title">Sabonete Cremoso Encanto Intensa</h5>
-                <p class="card-text" style="font-size: 20px;"><b>R$ 9,99</b></p>
-                <a href="#" class="btn btn-primary">Ver Produto</a>
-              </div>
+              <div class="transition">
+                <img class="card-img-top" src="assets/img/sabonete2.jpg" alt="" style="max-height: 260px;">
+                <div class="card-body">
+                  <h5 class="card-title">Sabonete Cremoso Encanto Intensa</h5>
+                  <p class="card-text" style="font-size: 20px;"><b>R$ 9,99</b></p>
+                  <a href="#" class="btn btn-primary">Ver Produto</a>
+                </div>
+                <div style="text-align: -webkit-center;">
+                  <div class="transition-border"></div>
+                </div>
+              </div>              
             </div>
   
             <div class="col-md-4" style="width: 18rem;">
-              <img class="card-img-top" src="assets/img/creme.jpg" alt="" style="max-height: 260px;">
-              <div class="card-body">
-                <h5 class="card-title">Creme Hidratante Nutritivo Corporal</h5>
-                <p class="card-text"><b>R$ 35,99</b></p>
-                <a href="#" class="btn btn-primary">Ver Produto</a>
+              <div class="transition">
+                <img class="card-img-top" src="assets/img/creme.jpg" alt="" style="max-height: 260px;">
+                <div class="card-body">
+                  <h5 class="card-title">Creme Hidratante Nutritivo Corporal</h5>
+                  <p class="card-text" style="font-size: 20px;"><b>R$ 35,99</b></p>
+                  <a href="#" class="btn btn-primary">Ver Produto</a>
+                </div>
+                <div style="text-align: -webkit-center;">
+                  <div class="transition-border"></div>
+                </div>
               </div>
             </div>
           </div>
