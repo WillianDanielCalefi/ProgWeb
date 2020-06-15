@@ -44,7 +44,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light gradiente" style="background-color: #212020; position: fixed; z-index: 16; width: 100%;">
       <div class="container">
-          <a style="width: 80px; height: 60px;" href="home.php"><img style="width: 70%; margin-left: 7px;" src="../../assets/img/icone.png" alt=""></a>
+          <a style="width: 80px; height: 60px;" href="home.php"><img style="width: 70%; margin-left: 7px;" src="../assets/img/icone.png" alt=""></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -80,45 +80,23 @@
 </head>
 <body>
   
-    <section>
+    <section style="padding-top: 80px;">
 
-        <table>
-            <tr>
-                <th>Company</th>
-                <th>Contact</th>
-                <th>Country</th>
-            </tr>
-            <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-            </tr>
-            <tr>
-                <td>Centro comercial Moctezuma</td>
-                <td>Francisco Chang</td>
-                <td>Mexico</td>
-            </tr>
-            <tr>
-                <td>Ernst Handel</td>
-                <td>Roland Mendel</td>
-                <td>Austria</td>
-            </tr>
-            <tr>
-                <td>Island Trading</td>
-                <td>Helen Bennett</td>
-                <td>UK</td>
-            </tr>
-            <tr>
-                <td>Laughing Bacchus Winecellars</td>
-                <td>Yoshi Tannamuri</td>
-                <td>Canada</td>
-            </tr>
-            <tr>
-                <td>Magazzini Alimentari Riuniti</td>
-                <td>Giovanni Rovelli</td>
-                <td>Italy</td>
-            </tr>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Foto</th>
+                <th scope="col">Produto</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr></tr>
+            </tbody>
         </table>
+    </div>
 
 
         <footer id="sticky-footer" class="py-4 bg-dark text-white-50" style="margin-top: 20px;">
@@ -143,13 +121,6 @@
     <script type="text/javascript" src="../assets/js/jquery-3.4.1.min.js"></script>
     <!-- Faz a chamada do bundle -->
     <script type="text/javascript" src="../assets/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        $(document).ready( function () {
-            $('#table').DataTable();
-        } );
-    </script>
-
 
 </body>
 </html>
