@@ -13,8 +13,8 @@
       .gradiente{
         border-bottom: 3px solid;
         border-image-source: linear-gradient(45deg, rgb(67, 117, 230), rgb(194, 48, 230));
-        border-image-slice: 1;        
-      }
+        border-image-slice: 1;
+      
 
       .carousel-caption{
         -webkit-text-stroke-width: 0.8px;
