@@ -1,5 +1,7 @@
 <html lang="en">
 <head>
+    <?php require_once ('../config/config.php'); ?>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cosméticos</title>
@@ -93,6 +95,18 @@
                 </tr>
             </thead>
             <tbody>
+                <?php 
+                        $stmt = $conn->prepare("SELECT * FROM produtos");
+                        $stmt->execute(); 
+                        $produto = $stmt->fetchAll();
+
+                        foreach($produto as $prod){
+                            echo '<td>'.$prod['img'].'</td>';
+                            echo '<td>'.$prod['nome'].'</td>';
+                            echo '<td>'.$prod['preco'].'</td>';
+                            echo '<td>'.$prod['img'].'</td>';
+                        }
+                        ?>
                 <tr></tr>
             </tbody>
         </table>

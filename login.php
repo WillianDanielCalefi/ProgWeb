@@ -46,11 +46,12 @@ if (isset($_POST['nome_cad']) && empty($_POST['nome_cad']) == false){
                 $email = addslashes($_POST['email_cad']); // variavel email
                 $login = addslashes($_POST['login_cad']); // varivel login
                 $senha = md5(addslashes($_POST['senha_cad'])); // variavel senha com criptografia md5
+                $nivel = 3;
 
                 //Insere os registros no BD
-                $sql = "INSERT INTO usuario SET nome = '$nome', email = '$email', nivel = 3, login = '$login', senha = '$senha' ";
+                $sql = "INSERT INTO usuario SET nome = '$nome', email = '$email', nivel = '$nivel', login = '$login', senha = '$senha' ";
 
-                $sql = $pdo->query($sql); // executa o insert
+                $sql = $conn->query($sql); // executa o insert
                 header("Location: index.php"); //após a inserção, retorna a pagina
             }
         }
