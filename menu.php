@@ -75,7 +75,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown" style="flex: inherit;">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a style="color: white; font-size: 30px;" class="nav-link" href="login.php"><i class="fa fa-power-off" aria-hidden="true"></i></a>                   </li>
+                        <a style="color: white; font-size: 30px;" class="nav-link" href="login.php#paralogin"><i class="fa fa-power-off" aria-hidden="true"></i></a>                   </li>
                 </ul>
             </div>
     </nav>
