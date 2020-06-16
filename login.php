@@ -67,8 +67,7 @@ if (isset($_POST['email_cad']) && empty($_POST['email_cad']) == false){
             echo "
                 <META HTTP-EQUIV=REFRESH CONTENT='0; url=login.php#paralogin'>
                 <script type=\"text/javascript\">
-                    alert(\"Cadastro Realizado com Sucesso!\");
-       mano         </script>
+                    alert(\"Cadastro Realizado com Sucesso!\"); </script>
             ";
 
            // header("Location: home.php"); //após a inserção, retorna a pagina
