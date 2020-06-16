@@ -5,13 +5,11 @@
 
 if (isset($_POST['login']) && empty($_POST['login']) == false){
     if(isset($_POST['senha']) && empty($_POST['senha']) == false){
-        $email = addslashes($_POST['login']);
+        $login = addslashes($_POST['login']);
         $senha = md5(addslashes($_POST['senha']));
 
         //verifica se o email e senha contem no banco de dados
-        $sql = $pdo->query("SELECT * FROM usuario WHERE login = '$login' AND senha = '$senha'");
-
-
+        $sql = $conn->query("SELECT * FROM usuario WHERE login = '$login' AND senha = '$senha'");
 
         if($sql->rowCount() > 0){
             $dado = $sql->fetch(); // cria um array com os valores do usuario
@@ -22,7 +20,6 @@ if (isset($_POST['login']) && empty($_POST['login']) == false){
             $_SESSION['login'] = $dado['login'];
             $_SESSION['senha'] = $dado['senha'];
             
-
             header("Location: index.php"); 
 
         }else{
@@ -79,7 +76,7 @@ if (isset($_POST['email_cad']) && empty($_POST['email_cad']) == false){
     <div class="content">      
       <!--FORMULÁRIO DE LOGIN-->
       <div id="login">
-        <form method="POST" action="<?php echo $_SERVER[“PHP_SELF”]; ?>"> 
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"> 
           <h1>Login</h1> 
           <p> 
             <label for="nome_login">Login</label>
@@ -104,7 +101,7 @@ if (isset($_POST['email_cad']) && empty($_POST['email_cad']) == false){
  
       <!--FORMULÁRIO DE CADASTRO-->
       <div id="cadastro">
-        <form method="POST" action="<?php echo $_SERVER[“PHP_SELF”]; ?>"> 
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"> 
           <h1>Cadastro</h1> 
            
           <p> 

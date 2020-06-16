@@ -1,6 +1,9 @@
 <html lang="en">
 <head>
-    <?php require_once ('../config/config.php'); ?>
+    <?php
+        session_start();
+        require_once ('../config/config.php'); 
+    ?>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -109,7 +112,7 @@
                             echo '<td>'.$prod['nome'].'</td>';
                             echo '<td>'.$prod['preco'].'</td>';
                             echo '<td>'.$prod['img'].'</td>';
-                            echo '<td></td>';
+                            echo '<td><button onclick="teste();"></button></td>';
                         }
                         ?>
                     <tr></tr>
@@ -142,6 +145,12 @@
     <script type="text/javascript" src="../assets/js/jquery-3.4.1.min.js"></script>
     <!-- Faz a chamada do bundle -->
     <script type="text/javascript" src="../assets/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        teste(){
+            alert('carai tiu');
+        }
+    </script>
 
 </body>
 </html>
