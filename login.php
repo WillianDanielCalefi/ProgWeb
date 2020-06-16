@@ -1,15 +1,20 @@
 <?php
+    require_once('menu.php');
     require 'config\config.php';
     session_start();
 
 
 if (isset($_POST['login']) && empty($_POST['login']) == false){
     if(isset($_POST['senha']) && empty($_POST['senha']) == false){
+
+
         $login = addslashes($_POST['login']);
         $senha = md5(addslashes($_POST['senha']));
 
         //verifica se o email e senha contem no banco de dados
         $sql = $conn->query("SELECT * FROM usuario WHERE login = '$login' AND senha = '$senha'");
+
+        
 
         if($sql->rowCount() > 0){
             $dado = $sql->fetch(); // cria um array com os valores do usuario
@@ -19,13 +24,18 @@ if (isset($_POST['login']) && empty($_POST['login']) == false){
             $_SESSION['nivel'] = $dado['nivel'];
             $_SESSION['login'] = $dado['login'];
             $_SESSION['senha'] = $dado['senha'];
-            
-            header("Location: index.php"); 
+
+            echo "
+                <META HTTP-EQUIV=REFRESH CONTENT='0; url=index.php'>
+                <script type=\"text/javascript\">
+                    alert(\"Login Realizado com Sucesso!\");
+                </script>
+            ";
 
         }else{
                 // mensagem em javascriot com erro de login
             echo "
-                <META HTTP-EQUIV=REFRESH CONTENT='0; url=index.php'>
+                <META HTTP-EQUIV=REFRESH CONTENT='0; url=login.php'>
                 <script type=\"text/javascript\">
                     alert(\"Erro: Usuário ou senha inválidos!\");
                 </script>
@@ -37,6 +47,7 @@ if (isset($_POST['login']) && empty($_POST['login']) == false){
 
 
 }
+
 
 if (isset($_POST['email_cad']) && empty($_POST['email_cad']) == false){
     if (isset($_POST['senha_cad']) && empty($_POST['senha_cad']) == false){
@@ -52,16 +63,24 @@ if (isset($_POST['email_cad']) && empty($_POST['email_cad']) == false){
             $sql = "INSERT INTO usuario SET nome = '$nome', email = '$email', nivel = '$nivel', login = '$login', senha = '$senha' ";
 
             $sql = $conn->query($sql); // executa o insert
-            header("Location: index.php"); //após a inserção, retorna a pagina
+
+            echo "
+                <META HTTP-EQUIV=REFRESH CONTENT='0; url=login.php#paralogin'>
+                <script type=\"text/javascript\">
+                    alert(\"Cadastro Realizado com Sucesso!\");
+       mano         </script>
+            ";
+
+           // header("Location: home.php"); //após a inserção, retorna a pagina
         }
     }
 }
 
-
-
-
-
 ?>
+
+
+
+
 <head>
   <meta charset="UTF-8" />
   <title>Login De Usuario</title>

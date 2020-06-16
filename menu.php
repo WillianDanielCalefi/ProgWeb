@@ -1,3 +1,16 @@
+<?php
+
+  
+  require_once('config/config.php');
+  session_start();
+
+  // var_dump($_SESSION);
+  // die;
+
+
+?>
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,15 +81,43 @@
                 <li class="nav-item">
                     <a style="color: white;" class="nav-link" href="trab_conosco.php">Trabalhe Conosco</a>
                 </li>
-                
+              
+                <?php 
+                    if(isset($_SESSION['id'])){
+                      if (($_SESSION['nivel'] <= 2)){?>
+                        <li class="nav-item">
+                          <a style="color: white;" class="nav-link" href="gerenciamento">Gerenciamento</a>
+                        </li>
+                         <?php 
+                      }
+                    }?>                              
                 </ul>
             </div>
         </div>
+
+        <?php if (isset($_SESSION['id'])){ ?>
         <div class="collapse navbar-collapse" id="navbarNavDropdown" style="flex: inherit;">
                 <ul class="navbar-nav">
+                <p style="color: white; text-align:center;"> Sair </p>
                     <li class="nav-item">
-                        <a style="color: white; font-size: 30px;" class="nav-link" href="login.php#paralogin"><i class="fa fa-power-off" aria-hidden="true"></i></a>                   </li>
+                        <a style="color: white; font-size: 30px;" class="nav-link" href="logout.php"><i class="fa fa-power-off" aria-hidden="true"></i></a></li>
+                        
                 </ul>
             </div>
+        <?php
+          } else{ ?>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown" style="flex: inherit;">
+          <ul class="navbar-nav">
+          <p style="color: white; text-align:center;">Entrar</p>
+              <li class="nav-item">
+                  <a style="color: white; font-size: 30px;" class="nav-link" href="login.php#paralogin"><i class="fa fa-power-off" aria-hidden="true"></i></a></li>
+          </ul>
+      </div>
+
+      <?php 
+          }   
+          ?>
+
     </nav>
 </head>
+

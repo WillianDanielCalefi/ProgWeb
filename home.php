@@ -2,6 +2,9 @@
 
 <?php 
   require_once('menu.php');
+
+  session_start();
+  
 ?>
 
 <body>
