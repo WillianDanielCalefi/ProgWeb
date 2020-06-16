@@ -10,6 +10,9 @@ if (isset($_POST['login']) && empty($_POST['login']) == false){
 
         //verifica se o email e senha contem no banco de dados
         $sql = $pdo->query("SELECT * FROM usuario WHERE login = '$login' AND senha = '$senha'");
+
+
+
         if($sql->rowCount() > 0){
             $dado = $sql->fetch(); // cria um array com os valores do usuario
             $_SESSION['id'] = $dado['id'];
@@ -18,8 +21,9 @@ if (isset($_POST['login']) && empty($_POST['login']) == false){
             $_SESSION['nivel'] = $dado['nivel'];
             $_SESSION['login'] = $dado['login'];
             $_SESSION['senha'] = $dado['senha'];
+            
 
-            header("Location: home.php"); 
+            header("Location: index.php"); 
 
         }else{
                 // mensagem em javascriot com erro de login
@@ -37,23 +41,21 @@ if (isset($_POST['login']) && empty($_POST['login']) == false){
 
 }
 
-if (isset($_POST['nome_cad']) && empty($_POST['nome_cad']) == false){
-    if (isset($_POST['email_cad']) && empty($_POST['email_cad']) == false){
-        if (isset($_POST['senha_cad']) && empty($_POST['senha_cad']) == false){
-            if (isset($_POST['login_cad']) && empty($_POST['login_cad']) == false){
-                //pega os valores digitados nos campos do formulario e insere nas variaveis
-                $nome = addslashes($_POST['nome_cad']); // varivel nome
-                $email = addslashes($_POST['email_cad']); // variavel email
-                $login = addslashes($_POST['login_cad']); // varivel login
-                $senha = md5(addslashes($_POST['senha_cad'])); // variavel senha com criptografia md5
-                $nivel = 3;
+if (isset($_POST['email_cad']) && empty($_POST['email_cad']) == false){
+    if (isset($_POST['senha_cad']) && empty($_POST['senha_cad']) == false){
+        if (isset($_POST['login_cad']) && empty($_POST['login_cad']) == false){
+            //pega os valores digitados nos campos do formulario e insere nas variaveis
+            $nome = addslashes($_POST['nome_cad']); // varivel nome
+            $email = addslashes($_POST['email_cad']); // variavel email
+            $login = addslashes($_POST['login_cad']); // varivel login
+            $senha = md5(addslashes($_POST['senha_cad'])); // variavel senha com criptografia md5
+            $nivel = 3;
 
-                //Insere os registros no BD
-                $sql = "INSERT INTO usuario SET nome = '$nome', email = '$email', nivel = '$nivel', login = '$login', senha = '$senha' ";
+            //Insere os registros no BD
+            $sql = "INSERT INTO usuario SET nome = '$nome', email = '$email', nivel = '$nivel', login = '$login', senha = '$senha' ";
 
-                $sql = $conn->query($sql); // executa o insert
-                header("Location: index.php"); //após a inserção, retorna a pagina
-            }
+            $sql = $conn->query($sql); // executa o insert
+            header("Location: index.php"); //após a inserção, retorna a pagina
         }
     }
 }
@@ -61,11 +63,11 @@ if (isset($_POST['nome_cad']) && empty($_POST['nome_cad']) == false){
 
 
 
-?>
 
+?>
 <head>
   <meta charset="UTF-8" />
-  <title>Formulário de Login e Registro com HTML5 e CSS3</title>
+  <title>Login De Usuario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link rel="stylesheet" type="text/css" href="assets/css/login.css" />
 </head>
@@ -77,7 +79,7 @@ if (isset($_POST['nome_cad']) && empty($_POST['nome_cad']) == false){
     <div class="content">      
       <!--FORMULÁRIO DE LOGIN-->
       <div id="login">
-        <form method="POST" action=""> 
+        <form method="POST" action="<?php echo $_SERVER[“PHP_SELF”]; ?>"> 
           <h1>Login</h1> 
           <p> 
             <label for="nome_login">Login</label>
@@ -86,7 +88,7 @@ if (isset($_POST['nome_cad']) && empty($_POST['nome_cad']) == false){
            
           <p> 
             <label for="email_login">Senha</label>
-            <input id="email_login" name="login" required="required" type="password" placeholder="ex. senha" /> 
+            <input id="email_login" name="senha" required="required" type="password" placeholder="ex. senha" /> 
           </p>
            
           <p> 
@@ -102,11 +104,11 @@ if (isset($_POST['nome_cad']) && empty($_POST['nome_cad']) == false){
  
       <!--FORMULÁRIO DE CADASTRO-->
       <div id="cadastro">
-        <form method="POST" action=""> 
+        <form method="POST" action="<?php echo $_SERVER[“PHP_SELF”]; ?>"> 
           <h1>Cadastro</h1> 
            
           <p> 
-            <label for="nome_cad">Seu nome</label>
+            <label for="nome_cad">Seu Nome Completo</label>
             <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="nome" />
           </p>
            
@@ -116,7 +118,7 @@ if (isset($_POST['nome_cad']) && empty($_POST['nome_cad']) == false){
           </p>
 
           <p> 
-            <label for="email_cad">Seu Login</label>
+            <label for="login_cad">Seu Login</label>
             <input id="login_cad" name="login_cad" required="required" type="text" placeholder="Usuario"/> 
           </p>
            
