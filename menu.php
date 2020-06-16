@@ -86,7 +86,7 @@
                     if(isset($_SESSION['id'])){
                       if (($_SESSION['nivel'] <= 2)){?>
                         <li class="nav-item">
-                          <a style="color: white;" class="nav-link" href="gerenciamento">Gerenciamento</a>
+                          <a style="color: white;" class="nav-link" href="gerenciamento.php">Gerenciamento</a>
                         </li>
                          <?php 
                       }
