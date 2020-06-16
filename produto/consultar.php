@@ -81,37 +81,44 @@
 
 </head>
 <body>
-  
-    <section style="padding-top: 80px;">
 
-    <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                <th scope="col">Foto</th>
-                <th scope="col">Produto</th>
-                <th scope="col">Preço</th>
-                <th scope="col">Opções</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
+
+    <div class="card" style="padding-top: 80px;">
+    <div class="card-body">
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Foto</th>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
                         $stmt = $conn->prepare("SELECT * FROM produtos");
                         $stmt->execute(); 
                         $produto = $stmt->fetchAll();
 
                         foreach($produto as $prod){
-                            echo '<td>'.$prod['img'].'</td>';
+                            echo '<td><img src="../assets/img/sem_foto.png" style="width: 37px;"></td>';
+                            if($prod['img']){
+                                echo '<td><img src="../assets/img/produto/'.$prod['img'].'" style="width: 37px;"></td>';
+                            }
                             echo '<td>'.$prod['nome'].'</td>';
                             echo '<td>'.$prod['preco'].'</td>';
                             echo '<td>'.$prod['img'].'</td>';
+                            echo '<td></td>';
                         }
                         ?>
-                <tr></tr>
-            </tbody>
-        </table>
+                    <tr></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
+    </div>
+    <section style="padding-top: 80px;">
 
         <footer id="sticky-footer" class="py-4 bg-dark text-white-50" style="margin-top: 20px;">
           <div class="container text-center">
