@@ -11,6 +11,7 @@ require ('menu.php');
                 <script type=\"text/javascript\">
                     alert(\"Voce não tem permissão para estar aqui!\"); </script>
             ";
+            
         
     }
 
