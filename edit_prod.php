@@ -1,7 +1,8 @@
 <?php
 
 require_once('config/config.php');
-require ('menu.php');
+//require ('menu.php');
+session_start();
 
     
     if($_SESSION['nivel'] > 1){
@@ -67,7 +68,7 @@ require ('menu.php');
 
                 
                 //Insere os registros no BD
-                $sql = "INSERT INTO produtos SET nome = '$nome', preco = '$preco', img = '$img', tipo = '$tipo'";      
+                $sql = "UPDATE produtos SET nome = '$nome', preco = '$preco', img = '$img', tipo = '$tipo'";      
                 $sql = $conn->query($sql); // executa o insert
 
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target)) {
@@ -87,6 +88,23 @@ require ('menu.php');
           }
 
   }
+
+    if (isset($_GET['id']) && empty($_GET['id']) == false){
+    $id = addslashes($_GET['id']);
+    }
+
+        //apresenta apenas os dados do "id" que foi selecionado para Editar
+    $sql = "SELECT * FROM produtos WHERE id = '$id'";
+    $sql = $conn->query($sql);
+    
+    if ($sql->rowCount() > 0){// verifica que o registro existe (se a contagem de linhas for maior que zero)
+        $dado = $sql->fetch(); // cria um array com os dado
+    }else{
+        header("Location: gerenciamento_prod.php"); // retorna para a pagina editar_user
+    }
+
+    // var_dump($dado);
+    // die;
 
 
 
@@ -113,17 +131,17 @@ require ('menu.php');
            
           <p> 
             <label for="nome">Nome do Produto</label>
-            <input id="nome" name="nome" required="required" type="text" placeholder="nome">
+            <input id="nome" name="nome" required="required" type="text" value="<?php echo $dado['nome']?>">
           </p>
            
           <p> 
             <label for="preco">Preco</label><br>
-            <input id="preco" name="preco" required="required" type="text" onkeyup="maskIt(this,event,'###.###.###,##',true,{pre:'R$'})">
+            <input id="preco" name="preco" required="required" type="text" onkeyup="maskIt(this,event,'###.###.###,##',true,{pre:'R$'})" value="<?php echo $dado['preco']?>">
           </p>
 
           <p> 
             <label for="image">Imagem do Produto</label>
-            <input id="image" name="image" required="required" type="file"> 
+            <input id="image" name="image" type="file" value="<?php echo $dado['img']?>"> 
           </p>
            
           <p> 

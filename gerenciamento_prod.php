@@ -99,7 +99,7 @@
                                      <a data-toggle="modal" data-target="#delete-modal' . $produto['id'] . ' ">
                                         <button type="button" class="btn btn-danger"> Excluir </button>
                                      </a>
-                                     <a href="edit_user.php?id='.$produto['id'].' ">
+                                     <a href="edit_prod.php?id='.$produto['id'].' ">
                                         <button type="button" class="btn btn-primary"> Alterar </button>
                                      </a>
                                      </td>';
@@ -111,7 +111,7 @@
 
                     <?php
                         if ($_SESSION['nivel'] > 1){
-                            
+
                     ?>
 
                     <!------------------- INICIO DO MODAL DE NEGAÇÃO-------------------->
