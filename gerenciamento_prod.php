@@ -2,10 +2,6 @@
     require_once('config/config.php');
     require ('menu.php');
 
-       
-
-
-
     if($_SESSION['nivel'] > 2){
         session_destroy();        
          echo "
@@ -72,7 +68,9 @@
 <!----------------------------TABELA DE PRODUTOS ------------>
 
         <div style="background-color: white">
-                <a href="insert_prod.php"> Novo Produto</a>
+                <div style="padding: 30px;">
+                    <a href="insert_prod.php" class="btn btn-primary"> Novo Produto</a>
+                </div>
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr style="text-align: center">
@@ -91,7 +89,7 @@
 
                      if($sql->rowCount() > 0){
                          foreach($sql->fetchall() as $produto){
-                             
+
                             $foto = $produto['img']!=null?"<img style='width: 60px;' src='./uploads/".$produto['img']."' alt=''>":"<img style='width: 60px;' src='./uploads/semfoto.png' alt=''>";
 
                              echo '<tr = style="text-align: center">';
@@ -100,7 +98,7 @@
                              echo '<td>'.$produto['preco'].'</td>';
                              echo '<td>
                                      <a data-toggle="modal" data-target="#delete-modal' . $produto['id'] . ' ">
-                                        <button type="button" class="btn btn-danger"> Excluir </button>
+                                        <button type="button" class="btn btn-danger" onclick="excluirProd('.$produto['id'].');"> Excluir </button>
                                      </a>
                                      <a href="edit_prod.php?id='.$produto['id'].' ">
                                         <button type="button" class="btn btn-primary"> Alterar </button>
@@ -182,6 +180,15 @@
     }
     function w3_close() {
         document.getElementsByClassName("w3-sidenav")[0].style.display = "none";
+    }
+
+    function excluirProd(id){
+
+        var resposta = confirm("Deseja Realmente Excluir este Produto?");
+
+        if(resposta == true){
+            window.location.href = "./function_excluirProd.php?id="+id;
+        }
     }
     
     </script>
