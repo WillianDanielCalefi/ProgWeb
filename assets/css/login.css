@@ -71,7 +71,9 @@
     font-style: italic;
   }
 
-
+  select{
+    outline: none;
+  }
 
   input {
     outline: none;
