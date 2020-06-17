@@ -8,6 +8,7 @@
   
 ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <body>
     <section id="home">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="padding-top: 70px;">
@@ -47,10 +48,10 @@
                 <strong style="margin-right: 20px;">Fique por dentro das novidades e promoções</strong>
               </div>
               <div class="col-md-5" style="padding: 5px;">
-                <input class="form-control form-control-lg" type="text" placeholder="E-mail" style="color: #212529; border-color: rgba(76, 24, 85, 1); background-color: #ff000000; margin-right: 20px;">
+                <input class="form-control form-control-lg" type="text" placeholder="E-mail" style="color: #212529; border-color: rgba(76, 24, 85, 1); background-color: #ff000000; margin-right: 20px;" id="envia_Email">
               </div>
               <div class="col-md-4" style="padding: 5px;">
-                <button type="submit" class="btn" style="padding: 11px; border-color: rgba(76, 24, 85, 1);">Cadastre-se</button>
+                <button type="submit" class="btn" style="padding: 11px; border-color: rgba(76, 24, 85, 1);" onclick="enviaEmail();">Cadastre-se</button>
               </div>
             </div>
           </div>
@@ -67,11 +68,12 @@
               $produto = $stmt->fetchAll();
               foreach($produto as $prod){ 
                 $foto = $prod['img']!=null?$prod['img']:"semfoto.png";
+                $tam = $prod['img']!=null?"260px":"189px";
                 ?>
 
                 <div class="col-md-4 bloco_central" style="padding: 20px; width: 18rem;">
                   <div class="transition desfoc">
-                    <img class="card-img-top" src="./uploads/<?=$foto?>" alt="" style="max-height: 260px;">
+                    <img class="card-img-top" src="./uploads/<?=$foto?>" alt="" style="max-height: <?=$tam?>">
                   <div class="card-body">
                     <h5 class="card-title"><?=$prod['nome']?></h5>
                     <p class="card-text" style="font-size: 20px;"><b>R$ <?=$prod['preco']?></b></p>
@@ -103,6 +105,25 @@
           } else {
             x.className = "topnav";
           } 
+        }
+
+        function enviaEmail(){
+          var email = $('#envia_Email').val();
+
+          $.ajax({
+            type: "POST",
+            url: "./functions.php",
+            dataType: "json",
+            data: email,
+            sucess: function (data){
+                console.log(data);
+                alert('Sucess');
+            },
+            error: function (data) {
+                console.log(data);
+                alert('Error');
+            }
+          });
         }
       </script>
 
