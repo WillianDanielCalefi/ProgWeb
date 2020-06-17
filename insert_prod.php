@@ -1,7 +1,9 @@
 <?php
 
 require_once('config/config.php');
-require ('menu.php');
+//require ('menu.php');
+session_start();
+
     
     if($_SESSION['nivel'] > 1){
         session_destroy();        
@@ -22,21 +24,73 @@ require ('menu.php');
             ";
     }
 
-
-    if (isset($_POST['nome']) && empty($_POST['nome']) == false){
-        $nome = addslashes($_POST['nome']); // varivel nome
-        $preco = addslashes($_POST['preco']);
-        $img = addslashes($_POST['img']);
-        $tipo = addslashes($_POST['tipo']);
-
+    if(isset($_POST['cadastrar'])){  
+       //varivavel para verificar se é possivel seguir com o upload
+        $uploadOK = 1;       
+        // salvando diretorio para salvar as imagens
+        $target = "uploads/".basename($_FILES['image']['name']);
+        //para checar o tipo da imagem
+        $imageFileType = strtolower(pathinfo($target,PATHINFO_EXTENSION));
+        // salvando o tamanho da imagem
+        $check = getimagesize($_FILES["image"]["tmp_name"]);
         
+          if($check !== false) {
+            $uploadOk = 1;
+            }else {
+            $uploadOk = 0;
+            
+          }
         
-        //Insere os registros no BD
-        $sql = "INSERT INTO produtos SET nome = '$nome', preco = '$preco', img = '$img', tipo = '$tipo'";
-    
-        $sql = $conn->query($sql); // executa o insert
-        header("Location: gerenciamento.php"); //após a inserção, retorna a pagina
-    } 
+        // checar o tamanho da imagem
+        if ($_FILES["image"]["size"] > 500000) {
+          $uploadOk = 0;
+        }
+        // checando se é uma imagem 
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+          $uploadOk = 0;          
+        }
+
+        if ($uploadOk == 0){          
+          echo "
+          <META HTTP-EQUIV=REFRESH CONTENT='0; url=insert_prod.php'>
+          <script type=\"text/javascript\">
+           alert(\"Faça upload da imagem do produto!\"); </script>
+          ";
+        }else{    
+              if (isset($_POST['nome']) && empty($_POST['nome']) == false){
+                $nome = addslashes($_POST['nome']); // varivel nome
+                $preco = addslashes($_POST['preco']);
+                $img = $_FILES['image']['name'];
+                $tipo = addslashes($_POST['tipo']);
+
+                 
+
+                
+                //Insere os registros no BD
+                $sql = "INSERT INTO produtos SET nome = '$nome', preco = '$preco', img = '$img', tipo = '$tipo'";      
+                $sql = $conn->query($sql); // executa o insert
+
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target)) {
+                  echo "
+                    <META HTTP-EQUIV=REFRESH CONTENT='0; url=gerenciamento_prod.php'>
+                    <script type=\"text/javascript\">
+                    alert(\"Upload do produto Concluido!\"); </script>
+                    ";
+                } else {
+                  echo "
+                    <META HTTP-EQUIV=REFRESH CONTENT='0; url=gerenciamento_prod.php'>
+                    <script type=\"text/javascript\">
+                    alert(\"Não foi possivel realizar o cadastro do produto!\"); </script>
+                    ";
+                }
+          
+              // header("Location: gerenciamento.php"); //após a inserção, retorna a pagina
+                }  
+          }
+
+  }
+
+
 
 ?>
 
@@ -56,7 +110,7 @@ require ('menu.php');
      <!------------------------INICIO DA TABELA DE CADASTRO----------------->
     <div class="container">
      <div id="cadastro" style="padding-top: 78px; position: center">
-        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"> 
+        <form method="POST" action="insert_prod.php" enctype="multipart/form-data" > 
           <h1>Cadastro de Produtos</h1> 
            
           <p> 
@@ -70,8 +124,8 @@ require ('menu.php');
           </p>
 
           <p> 
-            <label for="img">Imagem do Produto</label>
-            <input id="img" name="img" required="required" type="file"> 
+            <label for="image">Imagem do Produto</label>
+            <input id="image" name="image" required="required" type="file"> 
           </p>
            
           <p> 
@@ -86,7 +140,7 @@ require ('menu.php');
 
            
           <p> 
-            <input type="submit" value="Cadastrar"/> 
+            <input type="submit" value="Cadastrar" name="cadastrar"/> 
           </p>
                     <!-- <button type="button" class="btn btn-primary">Enviar</button> -->
                 </form>                  

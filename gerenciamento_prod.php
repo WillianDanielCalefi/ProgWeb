@@ -1,10 +1,10 @@
 <?php  
     require_once('config/config.php');
-    //session_start();    
     require ('menu.php');
 
-    //  var_dump($_SESSION['nivel']);
-    //  die;
+       
+
+
 
     if($_SESSION['nivel'] > 2){
         session_destroy();        
@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="assets/css/w3.css">
 </head>
 
-<body>
+<body style="background-color: rgba(181, 7, 131, 0.35)">
 
 <!-----------------------------INICIO DO SIDE BAR -->
 
@@ -71,7 +71,7 @@
 
 <!----------------------------TABELA DE PRODUTOS ------------>
 
-        <div>
+        <div style="background-color: white">
                 <a href="insert_prod.php"> Novo Produto</a>
                 <table class="table table-striped table-bordered">
                     <thead>
@@ -111,6 +111,7 @@
 
                     <?php
                         if ($_SESSION['nivel'] > 1){
+                            
                     ?>
 
                     <!------------------- INICIO DO MODAL DE NEGAÇÃO-------------------->

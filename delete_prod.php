@@ -30,10 +30,10 @@
         $sql = $conn->query($sql);
 
         //se executar a query, redireciona para user.php
-        header("Location: gerenciamento.php");
+        header("Location: gerenciamento_prod.php");
     } else{
         //em caso de falha no delete, retorna para o user.php
-        header("Location: gerenciamento.php");
+        header("Location: gerenciamento_prod.php");
          }    
 
 ?>
