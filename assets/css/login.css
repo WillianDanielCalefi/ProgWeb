@@ -160,7 +160,7 @@
 
   #cadastro, 
 #login{
-  position: absolute;
+  /* position: absolute; */
   top: 0px;
   width: 88%;   
   padding: 18px 6% 60px 6%;

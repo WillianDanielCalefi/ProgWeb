@@ -63,12 +63,9 @@ require ('menu.php');
                 $preco = addslashes($_POST['preco']);
                 $img = $_FILES['image']['name'];
                 $tipo = addslashes($_POST['tipo']);
-
-                 
-
                 
                 //Insere os registros no BD
-                $sql = "INSERT INTO produtos SET nome = '$nome', preco = '$preco', img = '$img', tipo = '$tipo'";      
+                $sql = "INSERT INTO produtos SET nome = '$nome', preco = '$preco', img = '$img', tipo = '$tipo'";
                 $sql = $conn->query($sql); // executa o insert
 
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target)) {
@@ -156,6 +153,10 @@ require ('menu.php');
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+    <script>
+      $('#preco').mask('#.##0,00', {reverse: true});
+    </script>
 
 
 </body>

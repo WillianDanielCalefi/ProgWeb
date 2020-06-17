@@ -82,7 +82,7 @@
                             <th>Ação</th>
                         </tr>
                     </thead>
-                    
+                    <img src="" alt="">
                     <tbody>
                     <?php
                     
@@ -91,8 +91,11 @@
 
                      if($sql->rowCount() > 0){
                          foreach($sql->fetchall() as $produto){
+                             
+                            $foto = $produto['img']!=null?"<img style='width: 60px;' src='./uploads/".$produto['img']."' alt=''>":"<img style='width: 60px;' src='./uploads/semfoto.png' alt=''>";
+
                              echo '<tr = style="text-align: center">';
-                             echo '<td>'.$produto['img'].'</td>';
+                             echo '<td>'.$foto.'</td>';
                              echo '<td>'.$produto['nome'].'</td>';
                              echo '<td>'.$produto['preco'].'</td>';
                              echo '<td>

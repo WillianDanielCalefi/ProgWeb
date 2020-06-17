@@ -2,6 +2,7 @@
 
 <?php 
   require_once('menu.php');
+  require_once('config/config.php');
 
   session_start();
   
@@ -59,47 +60,31 @@
           <h5 style="text-align: center; font-size: 30px;">Veja alguns de nossos produtos</h5>
           <p style="font-family: Lato,sans-serif; font-size: 13px; margin-bottom: 10px;">Vamos cuidar e apoiar uns aos outros e o primeiro passo para enfrentarmos o momento atual é cuidar da higiene. São muitas opções de aromas e texturas para você escolher o seu sabonete favorito, higienizar as mãos e cuidar da sua saúde.</p>
           <div class="row" style="padding-bottom: 30px;">
-            <div class="col-md-4 bloco_central" style="padding: 20px; width: 18rem;">
-              <div class="transition desfoc">
-                <img class="card-img-top" src="assets/img/sabonete.jpg" alt="" style="max-height: 260px;">
-                <div class="card-body">
-                  <h5 class="card-title">Sabonete de Limpeza Extraforte com Ácido Salicílico</h5>
-                  <p class="card-text" style="font-size: 20px;"><b>R$ 12,08</b></p>
-                  <a href="compras.php" class="btn btn-primary">Ver Produto</a>
-                </div>
-                <div style="text-align: -webkit-center;">
-                  <div class="transition-border"></div>
-                </div>
-              </div>              
+
+            <?php 
+              $stmt = $conn->prepare("SELECT * FROM produtos");
+              $stmt->execute(); 
+              $produto = $stmt->fetchAll();
+              foreach($produto as $prod){ 
+                $foto = $prod['img']!=null?$prod['img']:"semfoto.png";
+                ?>
+
+                <div class="col-md-4 bloco_central" style="padding: 20px; width: 18rem;">
+                  <div class="transition desfoc">
+                    <img class="card-img-top" src="./uploads/<?=$foto?>" alt="" style="max-height: 260px;">
+                  <div class="card-body">
+                    <h5 class="card-title"><?=$prod['nome']?></h5>
+                    <p class="card-text" style="font-size: 20px;"><b>R$ <?=$prod['preco']?></b></p>
+                    <a href="compras.php?id=<?=$prod['id']?>" class="btn btn-primary">Ver Produto</a>
+                  </div>
+                  <div style="text-align: -webkit-center;">
+                    <div class="transition-border"></div>
+                  </div>
+                </div>              
             </div>
-  
-            <div class="col-md-4 bloco_central" style="padding: 20px; width: 18rem;">
-              <div class="transition desfoc">
-                <img class="card-img-top" src="assets/img/sabonete2.jpg" alt="" style="max-height: 260px;">
-                <div class="card-body">
-                  <h5 class="card-title">Sabonete Cremoso Encanto Intensa</h5>
-                  <p class="card-text" style="font-size: 20px;"><b>R$ 9,99</b></p>
-                  <a href="#" class="btn btn-primary">Ver Produto</a>
-                </div>
-                <div style="text-align: -webkit-center;">
-                  <div class="transition-border"></div>
-                </div>
-              </div>              
-            </div>
-  
-            <div class="col-md-4 bloco_central" style="padding: 20px; width: 18rem;">
-              <div class="transition desfoc">
-                <img class="card-img-top" src="assets/img/creme.jpg" alt="" style="max-height: 260px;">
-                <div class="card-body">
-                  <h5 class="card-title">Creme Hidratante Nutritivo Corporal</h5>
-                  <p class="card-text" style="font-size: 20px;"><b>R$ 35,99</b></p>
-                  <a href="#" class="btn btn-primary">Ver Produto</a>
-                </div>
-                <div style="text-align: -webkit-center;">
-                  <div class="transition-border"></div>
-                </div>
-              </div>
-            </div>
+            <?php } ?>
+            
+
           </div>
         </div>
 
