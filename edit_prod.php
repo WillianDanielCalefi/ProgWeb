@@ -28,7 +28,7 @@ require ('menu.php');
         if (isset($_POST['nome']) && empty($_POST['nome']) == false){
           $id = $_POST['id_produto'];
           $nome = addslashes($_POST['nome']);
-          $preco = addslashes($_POST['preco']);
+          $preco = addslashes(str_replace(",", ".", $_POST['preco']));
           $tipo = addslashes($_POST['tipo']);
 
           //CASO SEJA REALIZADO O UPDATE DA IMAGEM DO PRODUTO, REFAZ A VERIFICAÇÃO
@@ -178,6 +178,10 @@ require ('menu.php');
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+    <script>
+      $('#preco').mask('#.##0,00', {reverse: true});
+    </script>
 
 
 </body>
