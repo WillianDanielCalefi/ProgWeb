@@ -26,22 +26,23 @@ session_start();
 
     if(isset($_POST['cadastrar'])){           
         if (isset($_POST['nome']) && empty($_POST['nome']) == false){
+          $id = $_POST['id_produto'];
           $nome = addslashes($_POST['nome']);
           $preco = addslashes($_POST['preco']);
           $tipo = addslashes($_POST['tipo']);
 
           //CASO SEJA REALIZADO O UPDATE DA IMAGEM DO PRODUTO, REFAZ A VERIFICAÇÃO
-          if (!isset($_FILES['image']['name'])){  
-                $uploadOK = 1;       
+          if (!empty($_FILES['image']['name'])){  
+                $uploadOK = 1;      
                 $target = "uploads/".basename($_FILES['image']['name']);
                 $imageFileType = strtolower(pathinfo($target,PATHINFO_EXTENSION));
                 $check = getimagesize($_FILES["image"]["tmp_name"]);
             
                 if($check !== false) {
                   $uploadOk = 1;
-                  }else {
+                }else {
                   $uploadOk = 0;                
-                  }
+                }
 
                 if ($_FILES["image"]["size"] > 500000) {
                   $uploadOk = 0;          
@@ -57,37 +58,34 @@ session_start();
                   <script type=\"text/javascript\">
                   alert(\"Faça upload da imagem do produto!\"); </script>
                   ";
-
-                
-                 
                 }else{
                     $img = $_FILES['image']['name'];          
-                    $sql = "UPDATE produtos SET nome = '$nome', preco = '$preco', img = '$img', tipo = '$tipo'";      
+                    $sql = "UPDATE produtos SET nome = '$nome', preco = '$preco', img = '$img', tipo = '$tipo' WHERE id = '$id'";      
                     $sql = $conn->query($sql); 
 
                     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target)) {
                       echo "
                         <META HTTP-EQUIV=REFRESH CONTENT='0; url=gerenciamento_prod.php'>
                         <script type=\"text/javascript\">
-                        alert(\"Upload do produto Concluido!\"); </script>
+                        alert(\"Edição do produto Concluido!\"); </script>
                         ";
                     } else {
                       echo "
                         <META HTTP-EQUIV=REFRESH CONTENT='0; url=gerenciamento_prod.php'>
                         <script type=\"text/javascript\">
-                        alert(\"Não foi possivel realizar o cadastro do produto!\"); </script>
+                        alert(\"Não foi possivel realizar a edição do produto!\"); </script>
                         ";
                     }
               }
         
       }else{
           //Insere os registros no BD
-          $sql = "UPDATE produtos SET nome = '$nome', preco = '$preco', tipo = '$tipo'";      
+          $sql = "UPDATE produtos SET nome = '$nome', preco = '$preco', tipo = '$tipo' WHERE id = '$id'";      
           $sql = $conn->query($sql); // executa o insert
                echo "
               <META HTTP-EQUIV=REFRESH CONTENT='0; url=gerenciamento_prod.php'>
               <script type=\"text/javascript\">
-              alert(\"Upload do produto Concluido!\"); </script>
+              alert(\"Edição do produto Concluido!\"); </script>
               ";
           
         } 
@@ -96,7 +94,7 @@ session_start();
 
 
     if (isset($_GET['id']) && empty($_GET['id']) == false){
-    $id = addslashes($_GET['id']);
+      $id = addslashes($_GET['id']);
      }
 
         //apresenta apenas os dados do "id" que foi selecionado para Editar
@@ -138,6 +136,7 @@ session_start();
           <p> 
             <label for="nome">Nome do Produto</label>
             <input id="nome" name="nome" required="required" type="text" value="<?php echo $dado['nome']?>">
+            <input type="hidden" name="id_produto" id="id_produto" value="<?=$_GET['id']?>">
           </p>
            
           <p> 
