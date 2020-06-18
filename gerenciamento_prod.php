@@ -59,7 +59,7 @@
 <!-----------------------------INICIO DO HEADER  ------------>
 
     <header class="w3-container w3-teal">
-        <pan class="w3-opennav w3-large" onclick="w3_open()">&#9776;</span>
+        <span class="w3-opennav w3-large btn btn-success" onclick="w3_open()"><i class="fa fa-bars"></i></span>
 
         <h1>GERENCIAMENTO DE PRODUTOS</h1>
     </header>

@@ -40,9 +40,9 @@ session_start();
             
                 if($check !== false) {
                   $uploadOk = 1;
-                  }else {
+                }else {
                   $uploadOk = 0;                
-                  }
+                }
 
                 if ($_FILES["image"]["size"] > 500000) {
                   $uploadOk = 0;          
