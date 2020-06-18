@@ -60,7 +60,7 @@ require ('menu.php');
         }else{    
               if (isset($_POST['nome']) && empty($_POST['nome']) == false){
                 $nome = addslashes($_POST['nome']); // varivel nome
-                $preco = addslashes($_POST['preco']);
+                $preco = addslashes(str_replace(",", ".", $_POST['preco']));
                 $img = $_FILES['image']['name'];
                 $tipo = addslashes($_POST['tipo']);
                 
