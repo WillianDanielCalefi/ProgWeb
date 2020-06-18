@@ -25,7 +25,7 @@
 
                 <div class="carousel-inner">
                 <?php
-                 $stmt = $conn->prepare("SELECT * FROM produtos");
+                 $stmt = $conn->prepare("SELECT * FROM produtos WHERE tipo = 'maquiagem'");
                  $i = 0;
                  $stmt->execute(); 
                  $produto = $stmt->fetchAll();
@@ -34,13 +34,11 @@
                    $foto = $prod['img']!=null?$prod['img']:"semfoto.png";
                    $tam = $prod['img']!=null?"260px":"189px";   
                    
-                   
-                
                 ?>
               
-                <div class="carousel-item <?php$active?>">
+                <div class="carousel-item <?=$active?>">
                 <img class="card-img-top" src="./uploads/<?=$foto?>" alt="" style="max-height: <?=$tam?>">
-                    <div class="carousel-caption">
+                    <div class="carousel-caption" style="color: black">
                       <?=$prod['nome'].'<br>'.$prod['preco'];?>
                     </div>                  
                 </div>
@@ -128,16 +126,33 @@
                   <li data-target="#carouselExampleIndicators2" data-slide-to="5"></li>
                 </ol>
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <a href="compras.php">
-                      <img class="d-block w-100" src="assets/img/catalogopng/sabonetepng.png" alt="" style="height: 300px;">
-                      <div class="carousel-caption">
-                        <strong>Sabonete de Limpeza Extraforte com Ácido Salicílico<br> R$12,08</strong>
-                      </div>  
-                    </a>                
-                  </div>
+                <?php
+                 $stmt = $conn->prepare("SELECT * FROM produtos WHERE tipo = 'Higiene Pessoal'");
+                 $i = 0;
+                 $stmt->execute(); 
+                 $produto = $stmt->fetchAll();
+                 foreach($produto as $prod){                   
+                   $active = $i==0?"active":"";
+                   $foto = $prod['img']!=null?$prod['img']:"semfoto.png";
+                   $tam = $prod['img']!=null?"260px":"189px";   
+                   
+                ?>
+              
+                <div class="carousel-item <?=$active?>">
+                <img class="card-img-top" src="./uploads/<?=$foto?>" alt="" style="max-height: <?=$tam?>">
+                    <div class="carousel-caption" style="color: black">
+                      <?=$prod['nome'].'<br>'.$prod['preco'];?>
+                    </div>                  
+                </div>
 
-                  <div class="carousel-item">
+                <?php
+                   
+                   $i++;
+                 }
+                
+                ?>
+
+                  <!-- <div class="carousel-item">
                     <img class="d-block w-100" src="assets/img/catalogopng/sabonete2png.png" alt="" style="height: 300px;">
                       <div class="carousel-caption">
                         <strong>Sabonete Cremoso Encanto Intensa<br> R$,99 </strong>
@@ -171,7 +186,7 @@
                       <strong>Máscara Facial Removedora de Cravos Clearskin 60g<br> R$9,99 </strong>
                     </div> 
                   </div>
-                </div>
+                </div>-->
 
                 <a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -180,7 +195,7 @@
                 <a class="carousel-control-next" href="#carouselExampleIndicators2" role="button" data-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="sr-only">Próximo</span>
-                </a>
+                </a> 
             </div>
           </div>    
         </div>

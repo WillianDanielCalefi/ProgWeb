@@ -4,7 +4,7 @@ require_once('config/config.php');
 require ('menu.php');
 
     
-    if($_SESSION['nivel'] > 1){
+    if($_SESSION['nivel'] > 2){
         session_destroy();        
          echo "
                 <META HTTP-EQUIV=REFRESH CONTENT='0; url=index.php'>
