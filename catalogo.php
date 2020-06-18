@@ -26,36 +26,24 @@
                 <div class="carousel-inner">
                 <?php
                  $stmt = $conn->prepare("SELECT * FROM produtos");
-                 $i = 0;
                  $stmt->execute(); 
                  $produto = $stmt->fetchAll();
+                 $i = 0;
                  foreach($produto as $prod){                   
                    $active = $i==0?"active":"";
                    $foto = $prod['img']!=null?$prod['img']:"semfoto.png";
                    $tam = $prod['img']!=null?"260px":"189px";   
-                   
-                   
-                
                 ?>
               
-                <div class="carousel-item <?php$active?>">
+                <div class="carousel-item <?=$active?>">
                 <img class="card-img-top" src="./uploads/<?=$foto?>" alt="" style="max-height: <?=$tam?>">
                     <div class="carousel-caption">
                       <?=$prod['nome'].'<br>'.$prod['preco'];?>
                     </div>                  
                 </div>
-
                 <?php
-                   
                    $i++;
-                 }
-                
-                ?>
-
-
-
-
-              
+                 } ?>
 
                 <!-- <div class="carousel-item">
                   <img class="d-block w-100" src="assets/img/catalogopng/caneta.png" alt="" style="height: 300px;">
