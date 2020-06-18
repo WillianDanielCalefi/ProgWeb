@@ -48,8 +48,8 @@
             <a href="javascript:void(0)"
                 onclick="w3_close()"
                 class="w3-closenav w3-large"> Fechar &times; </a>
-            <a href="#produtos">Produtos</a>
-            <a href="#funcionarios">Funcionarios</a>
+            <a href="gerenciamento_prod.php">Produtos</a>
+            <a href="ger_func.php">Funcionarios</a>
             <a href="#Clientes">Clientes</a>
             <a href="#Curriculos">Curriculos</a>
     </nav>
@@ -77,6 +77,7 @@
                             <th>Produto</th>
                             <th>Nome</th>
                             <th>Preço</th> 
+                            <th>Tipo</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
@@ -96,6 +97,7 @@
                              echo '<td>'.$foto.'</td>';
                              echo '<td>'.$produto['nome'].'</td>';
                              echo '<td>'.$produto['preco'].'</td>';
+                             echo '<td>'.$produto['tipo'].'</td>';
                              echo '<td>
                                      <a data-toggle="modal" data-target="#delete-modal' . $produto['id'] . ' ">
                                         <button type="button" class="btn btn-danger" onclick="excluirProd('.$produto['id'].');"> Excluir </button>

@@ -1,8 +1,8 @@
 <?php
 
 require_once('config/config.php');
-//require ('menu.php');
-session_start();
+require ('menu.php');
+//ession_start();
 
     
     if($_SESSION['nivel'] > 1){

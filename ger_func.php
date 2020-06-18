@@ -48,8 +48,8 @@
             <a href="javascript:void(0)"
                 onclick="w3_close()"
                 class="w3-closenav w3-large"> Fechar &times; </a>
-            <a href="#produtos">Produtos</a>
-            <a href="#funcionarios">Funcionarios</a>
+            <a href="gerenciamento_prod.php">Produtos</a>
+            <a href="ger_func.php">Funcionarios</a>
             <a href="#Clientes">Clientes</a>
             <a href="#Curriculos">Curriculos</a>
     </nav>
@@ -58,10 +58,10 @@
 
 <!-----------------------------INICIO DO HEADER  ------------>
 
-    <header class="w3-container w3-teal">
-        <pan class="w3-opennav w3-large" onclick="w3_open()">&#9776;</span>
+<header class="w3-container w3-teal">
+        <span class="w3-opennav w3-large btn btn-success" onclick="w3_open()"><i class="fa fa-bars"></i></span>
 
-        <h1>GERENCIAMENTO DE PRODUTOS</h1>
+        <h1>GERENCIAMENTO DE FUNCIONARIOS</h1>
     </header>
 <!-----------------------------fim DO HEADER  --------------->
 
@@ -69,7 +69,7 @@
 
         <div style="background-color: white">
                 <div style="padding: 30px;">
-                    <a href="#" class="btn btn-primary"> Cadastrar Funcionario</a>
+                    <a href="insert_func.php" class="btn btn-primary"> Cadastrar Funcionario</a>
                 </div>
                 <table class="table table-striped table-bordered">
                     <thead>
@@ -78,6 +78,7 @@
                             <th>Email</th>
                             <th>Cargo</th> 
                             <th>Login</th>
+                            <th>Ação</th>
                         </tr>
                     </thead>
                     <img src="" alt="">
@@ -88,25 +89,27 @@
                      $sql = $conn->query($sql);
 
                      if($sql->rowCount() > 0){
-                         foreach($sql->fetchall() as $Usuario){
+                         foreach($sql->fetchall() as $usuario){
                              echo '<tr = style="text-align: center">';
-                             echo '<td>'.$Usuario['nome'].'</td>';
-                             echo '<td>'.$Usuario['email'].'</td>';
-                             if($Usuario['nivel'] == 1){
-                             echo '<td> Administrador</td>';
-                             }
-                             if($Usuario['nivel'] == 2){
+                             echo '<td>'.$usuario['nome'].'</td>';
+                             echo '<td>'.$usuario['email'].'</td>';
+                             
+                            if($usuario['nivel'] == 1){
+                                echo '<td> Administrador </td>';
+                            }
+                            if($usuario['nivel'] == 2){
                                 echo '<td> Gerente </td>';
-                             }
-                             if($Usuario['nivel'] == 1){
-                                echo '<td> Clinete</td>';
-                             }                             
-                             echo '<td>'.$Usuario['Login'].'</td>';
+                            }
+                            if($usuario['nivel'] == 3){
+                                echo '<td> Cliente </td>';
+                            }                             
+
+                             echo '<td>'.$usuario['login'].'</td>';
                              echo '<td>
-                                     <a data-toggle="modal" data-target="#delete-modal' . $Usuario['id'] . ' ">
-                                        <button type="button" class="btn btn-danger" onclick="excluirProd('.$Usuario['id'].');"> Excluir </button>
+                                     <a data-toggle="modal" data-target="#delete-modal' . $usuario['id'] . ' ">
+                                        <button type="button" class="btn btn-danger" onclick="excluirProd('.$usuario['id'].');"> Excluir </button>
                                      </a>
-                                     <a href="edit_func.php?id='.$Usuario['id'].' ">
+                                     <a href="edit_prod.php?id='.$usuario['id'].' ">
                                         <button type="button" class="btn btn-primary"> Alterar </button>
                                      </a>
                                      </td>';
@@ -118,7 +121,6 @@
 
                     <?php
                         if ($_SESSION['nivel'] > 1){
-
                     ?>
 
                     <!------------------- INICIO DO MODAL DE NEGAÇÃO-------------------->

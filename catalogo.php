@@ -1,7 +1,11 @@
 <html lang="en">
 
 <?php 
+
+  require_once('config/config.php');
   require_once('menu.php');
+
+
 ?>
 
 <body>
@@ -18,15 +22,42 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
               </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img class="d-block w-100" src="assets/img/catalogopng/lapis.png" alt="" style="height: 300px;">
+
+                <div class="carousel-inner">
+                <?php
+                 $stmt = $conn->prepare("SELECT * FROM produtos");
+                 $i = 0;
+                 $stmt->execute(); 
+                 $produto = $stmt->fetchAll();
+                 foreach($produto as $prod){                   
+                   $active = $i==0?"active":"";
+                   $foto = $prod['img']!=null?$prod['img']:"semfoto.png";
+                   $tam = $prod['img']!=null?"260px":"189px";   
+                   
+                   
+                
+                ?>
+              
+                <div class="carousel-item <?php$active?>">
+                <img class="card-img-top" src="./uploads/<?=$foto?>" alt="" style="max-height: <?=$tam?>">
                     <div class="carousel-caption">
-                      <strong>Lapis Para Delinear os Olhos Color Trend 1,1g <br> R$9,99</strong>
+                      <?=$prod['nome'].'<br>'.$prod['preco'];?>
                     </div>                  
                 </div>
 
-                <div class="carousel-item">
+                <?php
+                   
+                   $i++;
+                 }
+                
+                ?>
+
+
+
+
+              
+
+                <!-- <div class="carousel-item">
                   <img class="d-block w-100" src="assets/img/catalogopng/caneta.png" alt="" style="height: 300px;">
                     <div class="carousel-caption">
                       <strong>Caneta Chanfrada Delineadora Líquida Preta 1ml<br> R$27,99 </strong>
@@ -60,7 +91,7 @@
                     <strong>Magix Spray Mark. Preparador e Fixador de Maquiagem - 90 ml<br> R$19,99 </strong>
                   </div> 
                 </div>
-              </div>
+              </div> -->
 
               <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
