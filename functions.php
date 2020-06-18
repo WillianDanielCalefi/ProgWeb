@@ -35,14 +35,4 @@
             ";
         }
     }
-
-    if($_POST){
-        $email = $_POST;
-        // $sql = "INSERT INTO novidades SET email = '$email'";
-        // $sql = $conn->query($sql); //
-        print_r(json_encode($email));
-        // if($sql){
-        //     echo json_encode(array($_POST));
-        // }
-    }
 ?>

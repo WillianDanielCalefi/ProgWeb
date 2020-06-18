@@ -188,7 +188,7 @@
         var resposta = confirm("Deseja Realmente Excluir este Produto?");
 
         if(resposta == true){
-            window.location.href = "./functions.php/excluir("+id+")";   
+            window.location.href = "./functions.php?id="+id;   
         }
     }
     
