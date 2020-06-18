@@ -32,8 +32,8 @@ session_start();
           $tipo = addslashes($_POST['tipo']);
 
           //CASO SEJA REALIZADO O UPDATE DA IMAGEM DO PRODUTO, REFAZ A VERIFICAÇÃO
-          if (isset($_FILES['image']['name'])){  
-                $uploadOK = 1;       
+          if (!empty($_FILES['image']['name'])){  
+                $uploadOK = 1;      
                 $target = "uploads/".basename($_FILES['image']['name']);
                 $imageFileType = strtolower(pathinfo($target,PATHINFO_EXTENSION));
                 $check = getimagesize($_FILES["image"]["tmp_name"]);
@@ -60,20 +60,20 @@ session_start();
                   ";
                 }else{
                     $img = $_FILES['image']['name'];          
-                    $sql = "UPDATE produtos SET nome = '$nome', preco = '$preco', img = '$target', tipo = '$tipo' WHERE id = '$id'";      
+                    $sql = "UPDATE produtos SET nome = '$nome', preco = '$preco', img = '$img', tipo = '$tipo' WHERE id = '$id'";      
                     $sql = $conn->query($sql); 
 
                     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target)) {
                       echo "
                         <META HTTP-EQUIV=REFRESH CONTENT='0; url=gerenciamento_prod.php'>
                         <script type=\"text/javascript\">
-                        alert(\"Upload do produto Concluido!\"); </script>
+                        alert(\"Edição do produto Concluido!\"); </script>
                         ";
                     } else {
                       echo "
                         <META HTTP-EQUIV=REFRESH CONTENT='0; url=gerenciamento_prod.php'>
                         <script type=\"text/javascript\">
-                        alert(\"Não foi possivel realizar o cadastro do produto!\"); </script>
+                        alert(\"Não foi possivel realizar a edição do produto!\"); </script>
                         ";
                     }
               }
@@ -85,7 +85,7 @@ session_start();
                echo "
               <META HTTP-EQUIV=REFRESH CONTENT='0; url=gerenciamento_prod.php'>
               <script type=\"text/javascript\">
-              alert(\"Upload do produto Concluido!\"); </script>
+              alert(\"Edição do produto Concluido!\"); </script>
               ";
           
         } 
