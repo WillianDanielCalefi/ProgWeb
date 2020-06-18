@@ -183,7 +183,6 @@
     }
 
     function excluirProd(id){
-
         var resposta = confirm("Deseja Realmente Excluir este Produto?");
 
         if(resposta == true){
