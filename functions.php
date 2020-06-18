@@ -23,7 +23,7 @@
     }
 
     if($_GET){
-        // $id = $_GET['id'];
+        $id = $_GET['id'];
         $sql = "DELETE FROM produtos WHERE id = $id";
         $sql = $conn->query($sql);
 

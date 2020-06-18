@@ -26,7 +26,7 @@
         $id = addslashes($_GET['id']); //recebe o valor da variavel
 
     
-        $sql = "DELETE FROM produtos WHERE id = '$id' ";    
+        $sql = "DELETE FROM produtos WHERE id = '$id' ";
         $sql = $conn->query($sql);
 
         //se executar a query, redireciona para user.php
